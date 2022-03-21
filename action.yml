@@ -1,0 +1,14 @@
+name: "setup oracle-linux"
+description: setup virtual runner environment on oracle linux
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-node@main
+    - uses: actions/setup-go@main
+    - uses: docker-practice/actions-setup-docker@master
+    - run: curl https://raw.githubusercontent.com/davidkhala/oracle-linux-utils/main/7/git.sh | bash -s update
+      name: setup git
+      shell: bash
+    - run: sudo yum groupinstall -y "Development Tools" "Development Libraries"
+      name: setup build essential
+      shell: bash
