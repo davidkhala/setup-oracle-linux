@@ -5,7 +5,9 @@ runs:
   steps:
     - uses: actions/setup-node@main
     - uses: actions/setup-go@main
-    - uses: docker-practice/actions-setup-docker@master
+    - run: sudo dnf install -y docker-ce
+      name: setup docker
+      shell: bash
     - run: curl https://raw.githubusercontent.com/davidkhala/oracle-linux-utils/main/7/git.sh | bash -s update
       name: setup git
       shell: bash
